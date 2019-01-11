@@ -59,18 +59,17 @@ steps:
   event: check_suite
   actions:
   - type: gate
-    every: true
-    gates:
-    - left: '%payload.check_suite.app.name%'
-      operator: ===
-      right: GitHub Actions
-    - left: '%payload.check_suite.status%'
-      operator: ===
-      right: completed
-      else:
-      - type: createIssue
-        title: The workflow didn't run
-        body: e-no-run.md
+    left: '%payload.check_suite.app.name%'
+    operator: ===
+    right: GitHub Actions
+  - type: gate
+    left: '%payload.check_suite.status%'
+    operator: ===
+    right: completed
+    else:
+    - type: createIssue
+      title: The workflow didn't run
+      body: e-no-run.md
   - type: createIssue
     title: Congratulations
     body: workflow-success.md
