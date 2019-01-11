@@ -26,8 +26,8 @@ steps:
   description: Add a Dockerfile
   event: pull_request.opened
   actions:
-  - type: findInTree
-    path: action-a/Dockerfile
+  - type: getFileContents
+    filename: action-a/Dockerfile
     action_id: theDockerfile
   - type: gate
     left: '%actions.theDockerfile%'
