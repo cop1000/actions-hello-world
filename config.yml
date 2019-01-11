@@ -1,314 +1,71 @@
-title: Continuous integration with CircleCI
-tagline: Learn how to automatically test changes made to your project, freeing you up to write more amazing code.
-description: Learn how to automatically test changes made to your project, freeing you up to write more amazing code.
+title: A hello world workflow
+tagline: A hello world workflow
+description: A hello world workflow
 tags:
-  - Continuous Integration
+  - GitHub Actions
+  - Hello World
 template:
-    name: continuous-integration-circle
-    repo: ci-circle-template
+    name: hello-world-actions
+    repo: 
 before:
-- type: updateBranchProtection
 # open issue 1 (welcome)
 - type: createIssue
   title: Welcome
-  body: 00.0_welcome.md
+  body: welcome.md
 
 # Repo artifacts:
-# 1. Issue: Welcome
-# 2. PR: [title created by learner] - add initial circle config
-# 3. PR: Configure the build
-# 4. PR: Add external links to our docs
-# 5. Issue: Continuous deployment
-# 6. Issue: Congratulations
 
 steps:
 
-# 1 - Enable CI
-- title: Enable continuous integration
-  description: Enable continuous integration on this repository.
-  link: '{{ repoUrl }}/issues/1'
-  event: status
-  actions:
-  # waits for circleci to report a status, any status
-  - type: gate
-    left: /^ci/circleci/
-    operator: test
-    right: '%payload.context%'
-  - type: gate
-    left: '%payload.state%'
-    operator: '!=='
-    right: 'pending'
-  # asks user to open a PR
-  - type: respond
-    issue: Welcome
-    with: 01.1_congratulations.md
-    data:
-      prUrl: '%payload.repository.html_url%/compare/master...initial-circle-config?expand=1'
-
-# 2 - Add new code
-- title: Introduce the configuration file
-  description: Learn how to use CI by introducing a configuration file.
-  link: '{{ repoUrl }}/compare/master...initial-circle-config?expand=1'
+# 1 - Add a Dockerfile
+- title: Add a Dockerfile
+  description: Add a Dockerfile
   event: pull_request.opened
   actions:
-  # introduces learner to the build status at the provider page (or the checks tab?), asks learner to commit a fix
-  - type: gate
-    left: '%payload.pull_request.head.ref%'
-    operator: "==="
-    right: "initial-circle-config"
-    else:
-      - type: respond
-        with: 01.e_wrong-branch.md
-        data:
-          prUrl: '%payload.repository.html_url%/compare/master...initial-circle-config?expand=1'
+  # TODO: check Dockerfile exists
   - type: respond
-    with: 02.1_build-status.md
-  - type: closeIssue
-    issue: Welcome
-  - type: octokit
-    method: pullRequests.createComment
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    number: '%payload.number%'
-    commit_id: '%payload.pull_request.head.sha%'
-    path: .circleci/config.yml
-    body: |
-      ```suggestion
-            - image: githubtraining/ci-custom:latest
-      ```
-    position: 5
+    with: docker-success.md
 
-## Step 3:
-- title: Specify the docker image
-  description: Specify the docker image.
-  link: '{{ repoUrl }}/pull/2'
-  event: pull_request.synchronize
+# 2 - Add an entrypoint script
+- title: Add an entrypoint script
+  description: Add an entrypoint script
+  event: pull_request.synchronized
   actions:
-  - type: createReview
-    body: 03.1_new-status.md
-    event: APPROVE
-
-# 4 - Merge your fix
-- title: Merge the configuration
-  description: Share your CI configuration with the team by merging it.
-  link: '{{ repoUrl }}/pull/2'
-  event: pull_request.closed
-  actions:
-  # create a pull request customizing the config file
-  - type: createPullRequest
-    title: Configure the build
-    body: 04.1_customize-the-build.md
-    head: custom-build
-    action_id: newPR
-    # assign the learner so they can commit a suggestion
-  - type: assignRegistrant
-    issue: '%actions.newPR.data.number%'
-  - type: octokit
-    method: pullRequests.createComment
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    number: '%actions.newPR.data.number%'
-    commit_id: '%actions.newPR.data.head.sha%'
-    path: .circleci/config.yml
-    body: |
-      ```suggestion
-                command: bundle exec jekyll build
-      ```
-    position: 18
-  # ask the learner to go to the next PR
+  # TODO: check if script file exists
+  # TODO: check if script file is executable
   - type: respond
-    with: 04.2_go-to-customize-build.md
-    data:
-      url: '%actions.newPR.data.html_url%'
+    with: entrypoint-success.md
 
-# 5 - Add validation
-- title: Add validation
-  description: Add automated builds for new commits.
-  link: '{{ repoUrl }}/pull/3'
-  event: pull_request.synchronize   # learner added a link checker
+# 3 - Create your workflow
+- title: Create your workflow
+  description: Create your workflow
+  event: pull_request.synchronized
   actions:
-  # ask the learner for their review
-  - type: requestReviewFromRegistrant
-  # asks the learner to turn on branch protection, and then approve the PR
   - type: respond
-    with: 05.1_protect-branch.md
-    data:
-      url: '%payload.pull_request.html_url%'
-      repo: '%payload.repository.html_url%'
-
-# 6 - Protect a branch based on the CI build status
-- title: Protect the master branch
-  description: Require that CI returns a successful status before a PR can be merged.
-  link: '{{ repoUrl }}/pull/3'
-  event: pull_request_review
-  actions:
-  - type: gate
-    left: '%payload.review.state%'
-    operator: ===
-    right: approved
-    else:
-      - type: respond
-        with: 05.e_approve-pr.md
-  # make sure learner turned on branch protection
-  - type: octokit
-    method: repos.getBranchProtection
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    branch: master
-    action_id: branch_prot
-  # make sure learner turned on status check branch protection
-  #- type: gate
-  #  every: true
-  #  gates:
-  #   - left: '%actions.branch_prot.data.required_status_checks%'
-  #   - left: '%actions.branch_prot.data.required_status_checks.strict%'
-  #   - left: '%actions.branch_prot.data.required_status_checks.contexts%'
-  #     operator: includes
-  #     right: '/^ci\/circleci/'
-  #  else:
-  #   - type: respond
-  #     with: 06.e_no-status-protection.md
-  # merge a broken build into the branch
-  - type: mergeBranch
-    head: timestamp
-    base: custom-build
-    action_id: mergedBranch
-  # tell the learner the branch is protected and to fix the broken link
-  - type: respond
-    with: 06.1_branch-protected.md
-    issue: '%payload.pull_request.number%'
-  - type: octokit
-    method: pullRequests.createComment
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    number: '%payload.pull_request.number%'
-    commit_id: '%actions.mergedBranch.data.sha%'
-    path: docs/01_getting_ready_for_class.md
-    body: |
-      ```suggestion
-      The time is: {{ site.time }}
-      ```
-    position: 4
-
-# 7 - Fix the broken build
-- title: Fix the broken build
-  description: Fix any broken links currently in our codebase.
-  link: '{{ repoUrl }}/pull/3'
-  event: pull_request.synchronize
-  actions:
-  # explaining waiting for the build, merge when done
-  - type: respond
-    with: 07.1_fixed.md
-
-# 8 - Merge the PR
-- title: Merge code with a successful build
-  description: Merge your code.
-  link: '{{ repoUrl }}/pull/3'
-  event: pull_request.closed
-  actions:
-  # introduces a new feature into the codebase, asks learner to add a unit test
-  - type: createPullRequest #PR 4
-    title: Add external links to the 'docs' directory
-    body: 08.1_feature.md
-    head: add-links
-    action_id: linksPR
-    # assign the learner so they can commit a suggestion
-  - type: assignRegistrant
-    issue: '%actions.linksPR.data.number%'
-  - type: octokit
-    method: pullRequests.createComment
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    number: '%actions.linksPR.data.number%'
-    commit_id: '%actions.linksPR.data.head.sha%'
-    path: .circleci/config.yml
-    body: |
-      ```suggestion
-                command: bundle exec htmlproofer ./_site --check-html
-      ```
-    position: 30
-  - type: respond
-    with: 08.2_go-to-feature-pr.md # points learner to feature PR
-    data:
-      url: '%actions.linksPR.data.html_url%'
-
-# 9 - Add a unit test
-- title: Add an HTMLProofer unit test
-  description: Check for broken links using CI.
-  link: '{{ repoUrl }}/pull/4'
-  event: pull_request.synchronize #PR 5 with the addition of a unit test
-  actions:
-  # merge a broken link into the branch
-  - type: mergeBranch
-    head: add-a-link
-    base: add-links
-    action_id: branchWithLink
-  # tells the learner to fix the broken link
-  - type: respond
-    with: 09.1_fix-the-link.md
-  # suggest change from the learner
-  - type: octokit
-    method: pullRequests.createComment
-    owner: '%payload.repository.owner.login%'
-    repo: '%payload.repository.name%'
-    number: '%payload.pull_request.number%'
-    commit_id: '%actions.branchWithLink.data.sha%'
-    path: index.md
-    body: |
-      ```suggestion
-      Welcome to our Documentation site. How about a visit to [GitHub Docs](https://help.github.com/articles/set-up-git/)
-      ```
-    position: 5
-
-# 10
-- title: Fix the broken link
-  description: Fix the broken link.
-  link: '{{ repoUrl }}/pull/4'
-  event: pull_request.synchronize
-  actions:
-  - type: requestReviewFromRegistrant
+    with: trigger.md
   
-  - type: respond
-    with: 10.1_merge.md
-    data:
-      url: '%payload.pull_request.html_url%'
-
-# 11 - Merge your unit test
-- title: Merge the unit test
-  description: Merge the test.
-  link: '{{ repoUrl }}/pull/4'
+# 4 - Trigger the workflow
+- title: Trigger the workflow
+  description: Trigger the workflow
   event: pull_request.closed
   actions:
-  # teaches the learner about continuous deployment with the introduction of the stage in the config
-  - type: createIssue # PR 5: CD
-    title: Continuous deployment
-    body: 11.1_deploy.md
-    action_id: deployIssue
-    data:
-      repo: '%payload.repository.html_url%'
-  # asks the learner to merge the deployment
+  # TODO: check that it is the closed PR and merged
   - type: respond
-    issue: Add external links to the 'docs' directory
-    with: 11.2_goto-deployment.md
-    data:
-      url: '%actions.deployIssue.data.html_url%'
+    with: workflow-triggered.md
 
-# 12 - Deploy
-- title: Deploy
-  description: Add continuous deployment to your pipeline.
-  link: '{{ repoUrl }}/issues/5'
-  event: deployment
+# 5 - Run the action
+- title: Run the action
+  description: Run the action
+  event: check_suite
   actions:
-  - type: createIssue
-    title: Congratulations
-    body: 12.2_congratulations.md
-    action_id: congratsIssue
-  # points the learner to the deployment, constrasts with continuous delivery
+  - type: gate
+    every: true
+    gates:
+    - left: '%payload.check_suite.app.name%'
+      operator: ===
+      right: GitHub Actions
+    - left: '%payload.check_suite.status%'
+      operator: ===
+      right: completed
   - type: respond
-    issue: Continuous deployment
-    with: 12.1_see-deployed.md
-    data:
-      url: '%actions.congratsIssue.data.html_url%'
-  # @todo create additional PRs for continued study
-  - type: closeIssue
-    issue: Continuous deployment
+    with: workflow-success.md

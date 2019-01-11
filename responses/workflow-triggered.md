@@ -1,0 +1,1 @@
+You merged! Your workflow should now be triggered. I'll respond when I get a `check_suite` event from GitHub Actions.
