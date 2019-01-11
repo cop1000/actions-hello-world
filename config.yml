@@ -28,6 +28,7 @@ steps:
   actions:
   - type: getFileContents
     filename: action-a/Dockerfile
+    required: false
     action_id: theDockerfile
   - type: gate
     left: '%actions.theDockerfile%'
