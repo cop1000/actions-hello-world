@@ -3,12 +3,15 @@ tagline: A hello world workflow
 description: A hello world workflow
 tags:
   - GitHub Actions
+  - Workflows
   - Hello World
 template:
     name: hello-world-actions
-    # TODO: Need a template repo so we can create a PR
-    repo: false
+    repo: hello-world-actions-template
 before:
+# protect the master branch
+- type: updateBranchProtection
+
 # open issue 1 (welcome)
 - type: createIssue
   title: Welcome
@@ -23,7 +26,14 @@ steps:
   description: Add a Dockerfile
   event: pull_request.opened
   actions:
-  # TODO: check Dockerfile exists
+  - type: findInTree
+    path: action-a/Dockerfile
+    action_id: theDockerfile
+  - type: gate
+    left: '%actions.theDockerfile%'
+    else: 
+    - type: respond
+      with: e-no-docker.md
   - type: respond
     with: docker-success.md
 
