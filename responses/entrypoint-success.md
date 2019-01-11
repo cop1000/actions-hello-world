@@ -17,6 +17,7 @@ TBD
 
 Let's add the templated workflow:
 
+In `./.github/main.workflow`:
 ```hcl
 workflow "New workflow" {
   on = "push"

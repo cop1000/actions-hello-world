@@ -6,6 +6,7 @@ If we do want to publish to Dockerhub, we can use an existing Action called Dock
 
 Now let's add the entrypoint script.
 
+In `./action-a/entrypoint.sh`:
 ```shell
 #!/bin/sh -l
 

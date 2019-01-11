@@ -4,6 +4,7 @@ This is where I talk about and define workflows and actions.
 
 1. Create a Dockerfile in a new PR. Use this templated content:
 
+In `./action-a/Dockerfile`:
 ```Dockerfile
 FROM debian:9.5-slim
 

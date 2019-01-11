@@ -67,5 +67,10 @@ steps:
     - left: '%payload.check_suite.status%'
       operator: ===
       right: completed
-  - type: respond
-    with: workflow-success.md
+      else:
+      - type: createIssue
+        title: The workflow didn't run
+        body: e-no-run.md
+  - type: createIssue
+    title: Congratulations
+    body: workflow-success.md
