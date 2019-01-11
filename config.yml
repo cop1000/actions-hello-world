@@ -6,6 +6,7 @@ tags:
   - Hello World
 template:
     name: hello-world-actions
+    # TODO: Need a template repo so we can create a PR
     repo: false
 before:
 # open issue 1 (welcome)
@@ -56,20 +57,28 @@ steps:
 # 5 - Run the action
 - title: Run the action
   description: Run the action
-  event: check_suite
+  event: check_run
   actions:
   - type: gate
-    left: '%payload.check_suite.app.name%'
+    left: '%payload.check_run.app.name%'
     operator: ===
     right: GitHub Actions
   - type: gate
-    left: '%payload.check_suite.status%'
+    left: '%payload.check_run.status%'
     operator: ===
     right: completed
+  - type: gate
+    left: '%payload.check_run.conclusion%'
+    operator: ===
+    right: success
     else:
     - type: createIssue
       title: The workflow didn't run
       body: e-no-run.md
+      data:
+        url: '%payload.check_run.html_url%'
   - type: createIssue
     title: Congratulations
     body: workflow-success.md
+    data:
+      url: '%payload.check_run.html_url%'

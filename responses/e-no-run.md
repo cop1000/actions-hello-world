@@ -1,4 +1,4 @@
-The workflow didn't run.
+The workflow didn't run. [Check out the output.]({{ url }})
 
 Here's some possible reasons why:
 - files aren't in proper directories

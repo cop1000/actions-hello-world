@@ -1,1 +1,1 @@
-Your workflow ran! Check it out. 
+Your workflow ran! [Check out the output.]({{ url }})
