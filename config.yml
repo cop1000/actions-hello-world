@@ -29,7 +29,7 @@ steps:
 # 2 - Add an entrypoint script
 - title: Add an entrypoint script
   description: Add an entrypoint script
-  event: pull_request.synchronized
+  event: pull_request.synchronize
   actions:
   # TODO: check if script file exists
   # TODO: check if script file is executable
@@ -39,7 +39,7 @@ steps:
 # 3 - Create your workflow
 - title: Create your workflow
   description: Create your workflow
-  event: pull_request.synchronized
+  event: pull_request.synchronize
   actions:
   - type: respond
     with: trigger.md
