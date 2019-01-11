@@ -6,7 +6,7 @@ tags:
   - Hello World
 template:
     name: hello-world-actions
-    repo: 
+    repo: false
 before:
 # open issue 1 (welcome)
 - type: createIssue
