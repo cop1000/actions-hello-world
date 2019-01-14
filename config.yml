@@ -41,7 +41,7 @@ steps:
   - type: gate
     left: '%actions.tree.data.tree%'
     operator: includes
-    right: path:/action-a/Dockerfile
+    right: path:action-a/Dockerfile
     else:
       type: respond
       with: e-no-docker.md
@@ -60,7 +60,7 @@ steps:
   - type: gate
     left: '%actions.tree.data.tree%'
     operator: includes
-    right: path:/action-a/entrypoint.sh
+    right: path:action-a/entrypoint.sh
     else:
       type: respond
       with: e-no-entrypoint.md
