@@ -6,7 +6,7 @@ Here's some possible reasons why:
 
 ### Troubleshooting steps
 
-Check out the [action's output]({{ url }}). You can also access this information by going to the [Actions tab]({{ repo/actions }}).
+Check out the [action's output]({{ url }}). You can also access this information by going to the [Actions tab]({{ repo }}/actions).
 
 You can also use the following to help you troubleshoot:
 <details><summary>For <code>./action-a/entrypoint.sh</code></summary>
