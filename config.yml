@@ -47,6 +47,8 @@ steps:
       with: e-no-docker.md
   - type: respond
     with: docker-success.md
+  - type: closeIssue
+    issue: Welcome
 
 # 2 - Add an entrypoint script
 - title: Add an entrypoint script
@@ -71,6 +73,9 @@ steps:
     else:
       type: respond
       with: e-make-exec.md
+      data:
+        repo: '%payload.repository%'
+        branch: '%payload.pull_request.head.ref%'
   - type: respond
     with: entrypoint-success.md
 
@@ -117,6 +122,7 @@ steps:
       with: e-no-run.md
       data:
         url: '%payload.check_run.html_url%'
+        repo: '%payload.repository.html_url%'
   - type: createReview
     pullRequest: '%payload.check_run.pull_requests.0.number%'
     body: workflow-success.md
