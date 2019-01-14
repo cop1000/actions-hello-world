@@ -88,12 +88,13 @@ steps:
       with: e-no-run.md
       data:
         url: '%payload.check_run.html_url%'
-  - type: createReview
-    body: workflow-success.md
-    event: APPROVE
-    number: '%payload.check_run.pull_requests.0.number%'
-    # data:
-    #   url: '%payload.check_run.html_url%'
+  # TODO look into why createReview fails with the number from payload
+  - type: removeBranchProtection
+  - type: respond
+    issue: '%payload.check_run.pull_requests.0.number%'
+    with: workflow-success.md
+    data:
+      url: '%payload.check_run.html_url%'
 
 # 5 - Incorporate the action
 - title: Incorporate the workflow
