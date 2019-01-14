@@ -82,14 +82,14 @@ steps:
     operator: ===
     right: success
     else:
-    - type: createIssue
-      title: The workflow didn't run
-      body: e-no-run.md
+    - type: respond
+      issue: '%payload.check_run.pull_requests.0.number%'
+      with: e-no-run.md
       data:
         url: '%payload.check_run.html_url%'
-  - type: createIssue
-    title: Congratulations
-    body: workflow-success.md
+  - type: respond
+    issue: '%payload.check_run.pull_requests.0.number%'
+    with: workflow-success.md
     data:
       url: '%payload.check_run.html_url%'
 
@@ -105,8 +105,13 @@ steps:
       operator: ===
       right: closed
     - left: '%payload.pull_request.merged%'
-  - type: respond
-    with: workflow-finished.md
+  - type: createIssue
+    title: Congratulations
+    body: workflow-finished.md
     data:
       repo: '%payload.repository.html_url%'
-
+    action_id: congratsIssue
+  - type: respond
+    with: go-to-final.md
+    data:
+      url: '%actions.congratsIssue.data.html_url%'
