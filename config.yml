@@ -71,6 +71,9 @@ steps:
     else:
       type: respond
       with: e-make-exec.md
+      data:
+        repo: '%payload.repository%'
+        branch: '%payload.pull_request.head.ref%'
   - type: respond
     with: entrypoint-success.md
 
