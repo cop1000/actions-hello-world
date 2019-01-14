@@ -32,9 +32,11 @@ You can also use the following to help you troubleshoot:
 
 | Problem                                                     | Solution                                                                                                                                                                                        |
 |-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| There's some problem with your syntax in `main.workflow`.   | Copy and paste the code exactly as is shown in this PR (check for extra spaces, symbols) or see if an error appears in the action logs.                                                         |
 | The file isn't called `main.workflow` (case sensitive)      | Rename the file using the [UI](https://help.github.com/articles/renaming-a-file/) or [your CLI](https://help.github.com/articles/renaming-a-file-using-the-command-line/)                       |
 | The directory `.github` doesn't exist.                      | [Create the `.github` folder](https://help.github.com/articles/creating-new-files/) and [move `main.workflow`](https://help.github.com/articles/moving-a-file-to-a-new-location/) to `.github`. |
 | The `main.workflow` file isn't inside the `.github` folder. | [Move `main.workflow`](https://help.github.com/articles/moving-a-file-to-a-new-location/) to `.github`.                                                                                         |
 </details>
+
 
  Next time you push, your action will try to run. I'll respond when that occurs. 

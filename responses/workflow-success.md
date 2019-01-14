@@ -3,6 +3,7 @@ Your workflow ran! [Check out the output]({{ url }}).
 You should see the string "Hello world, I'm Mona!" printed at the bottom to `stdout`.
 
 ![Actions successful log file](https://developer.github.com/assets/images/actions-log-file.png)
+
 Activity: Merge your workflow
 
 1. Merge this pull request.
