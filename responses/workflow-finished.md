@@ -1,0 +1,1 @@
+You merged! Your workflow should now be triggered. We'll let you do this one on your own. Keep an eye on your [Actions tab]({{ repo }}/actions).

@@ -43,8 +43,16 @@ steps:
   description: Add an entrypoint script
   event: pull_request.synchronize
   actions:
-  # TODO: check if script file exists
   # TODO: check if script file is executable
+  - type: getFileContents
+    filename: action-a/entrypoint.sh
+    required: false
+    action_id: theScript
+  - type: gate
+    left: '%actions.theScript%'
+    else: 
+    - type: respond
+      with: e-no-entrypoint.md
   - type: respond
     with: entrypoint-success.md
 
@@ -55,19 +63,10 @@ steps:
   actions:
   - type: respond
     with: trigger.md
-  
+
 # 4 - Trigger the workflow
 - title: Trigger the workflow
   description: Trigger the workflow
-  event: pull_request.closed
-  actions:
-  # TODO: check that it is the closed PR and merged
-  - type: respond
-    with: workflow-triggered.md
-
-# 5 - Run the action
-- title: Run the action
-  description: Run the action
   event: check_run
   actions:
   - type: gate
@@ -93,3 +92,21 @@ steps:
     body: workflow-success.md
     data:
       url: '%payload.check_run.html_url%'
+
+# 5 - Incorporate the action
+- title: Incorporate the workflow
+  description: Incorporate the workflow
+  event: pull_request.closed
+  actions:
+  - type: gate
+    every: true
+    gates:
+    - left: '%payload.action%'
+      operator: ===
+      right: closed
+    - left: '%payload.pull_request.merged%'
+  - type: respond
+    with: workflow-finished.md
+    data:
+      repo: '%payload.repository.html_url%'
+

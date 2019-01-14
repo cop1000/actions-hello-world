@@ -1,5 +1,5 @@
 Let's trigger your workflow!
 
-Your workflow triggers on a `push`, so let's merge your PR and trigger that workflow. 
+Your workflow triggers on a `push`, which just occurred. 
 
-Merge your PR.
+Let's wait for the workflow to be triggered on a `check_run`.
