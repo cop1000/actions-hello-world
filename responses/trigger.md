@@ -2,4 +2,6 @@ Since you added these three files to your repository using the file structure ab
 
 You can see the action status reported below, you you can click the "Actions" tab in your repository. From there you will see the actions that have run, and you can click on the action's "Log" link to view details.
 
+![View an action's log](https://developer.github.com/assets/images/actions-view-log.png)
+
 I will respond when I detect your action has run and reported a status. 
