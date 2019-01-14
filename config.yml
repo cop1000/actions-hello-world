@@ -24,8 +24,16 @@ steps:
 # 1 - Add a Dockerfile
 - title: Add a Dockerfile
   description: Add a Dockerfile
-  event: pull_request.opened
+  event: pull_request
   actions:
+  - type: gate
+    gates:
+    - left: '%payload.action%'
+      operator: ===
+      right: opened
+    - left: '%payload.action%'
+      operator: ===
+      right: synchronize
   - type: getTree
     action_id: tree
     recursive: true
