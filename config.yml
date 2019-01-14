@@ -26,14 +26,16 @@ steps:
   description: Add a Dockerfile
   event: pull_request.opened
   actions:
-  - type: getFileContents
-    filename: action-a/Dockerfile
-    required: false
-    action_id: theDockerfile
+  - type: getTree
+    action_id: tree
+    recursive: true
+    sha: '%payload.pull_request.head.sha%'
   - type: gate
-    left: '%actions.theDockerfile%'
-    else: 
-    - type: respond
+    left: '%actions.tree.data.tree%'
+    operator: includes
+    right: path:/action-a/Dockerfile
+    else:
+      type: respond
       with: e-no-docker.md
   - type: respond
     with: docker-success.md
@@ -43,15 +45,16 @@ steps:
   description: Add an entrypoint script
   event: pull_request.synchronize
   actions:
-  # TODO: check if script file is executable
-  - type: getFileContents
-    filename: action-a/entrypoint.sh
-    required: false
-    action_id: theScript
+  - type: getTree
+    action_id: tree
+    recursive: true
+    sha: '%payload.pull_request.head.sha%'
   - type: gate
-    left: '%actions.theScript%'
-    else: 
-    - type: respond
+    left: '%actions.tree.data.tree%'
+    operator: includes
+    right: path:/action-a/entrypoint.sh
+    else:
+      type: respond
       with: e-no-entrypoint.md
   - type: respond
     with: entrypoint-success.md
@@ -61,6 +64,17 @@ steps:
   description: Create your workflow
   event: pull_request.synchronize
   actions:
+  - type: getTree
+    action_id: tree
+    recursive: true
+    sha: '%payload.pull_request.head.sha%'
+  - type: gate
+    left: '%actions.tree.data.tree%'
+    operator: includes
+    right: path:/^.github/main.workflow$/
+    else:
+      type: respond
+      with: e-no-workflow.md
   - type: respond
     with: trigger.md
 
