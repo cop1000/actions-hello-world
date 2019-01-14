@@ -37,3 +37,8 @@ Activity: Create a Dockerfile
     ADD entrypoint.sh /entrypoint.sh
     ENTRYPOINT ["/entrypoint.sh"]
     ```
+1. Stage and commit your file.
+1. Push the file up to GitHub.
+1. Open a pull request with your new branch against `master`.
+
+I'll respond in your new pull request when you open it.
