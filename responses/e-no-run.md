@@ -1,10 +1,14 @@
-The workflow didn't run. [Check out the output]({{ url }}).
+The workflow didn't run.
 
 Here's some possible reasons why:
 - files aren't in proper directories
 - your script isn't executable
 
 ### Troubleshooting steps
+
+Check out the [action's output]({{ url }}). You can also access this information by going to the [Actions tab]({{ repo/actions }}).
+
+You can also use the following to help you troubleshoot:
 <details><summary>For <code>./action-a/entrypoint.sh</code></summary>
 
 | Problem                                                      | Solution                                                                                                                                                                                          |
@@ -33,4 +37,4 @@ Here's some possible reasons why:
 | The `main.workflow` file isn't inside the `.github` folder. | [Move `main.workflow`](https://help.github.com/articles/moving-a-file-to-a-new-location/) to `.github`.                                                                                         |
 </details>
 
- Next time you push, your action will try to run again. I'll respond when I get another status from your issue. 
+ Next time you push, your action will try to run. I'll respond when that occurs. 
