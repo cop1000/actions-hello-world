@@ -47,6 +47,8 @@ steps:
       with: e-no-docker.md
   - type: respond
     with: docker-success.md
+  - type: closeIssue
+    issue: Welcome
 
 # 2 - Add an entrypoint script
 - title: Add an entrypoint script
