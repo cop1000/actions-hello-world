@@ -64,6 +64,13 @@ steps:
     else:
       type: respond
       with: e-no-entrypoint.md
+  - type: gate
+    left: '%actions.tree.data.tree%'
+    operator: includes
+    right: mode:100755
+    else:
+      type: respond
+      with: e-make-exec.md
   - type: respond
     with: entrypoint-success.md
 
