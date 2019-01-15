@@ -7,7 +7,7 @@ You should see the string "Hello world, I'm Mona!" printed at the bottom to `std
 Activity: Merge your workflow
 
 1. Merge this pull request.
-1. Delete you branch. 
+1. Delete your branch. 
 
 Anyone that uses this repository, and any future code can benefit from this workflow and your new action!
 
