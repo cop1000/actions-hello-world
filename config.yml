@@ -25,6 +25,7 @@ steps:
 - title: Add a Dockerfile
   description: Add a Dockerfile
   event: pull_request
+  link: '{{ repoUrl }}/issues/1'
   actions:
   - type: gate
     gates:
@@ -54,6 +55,7 @@ steps:
 - title: Add an entrypoint script
   description: Add an entrypoint script
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -83,6 +85,7 @@ steps:
 - title: Add a `workflow` block to your workflow file
   description: Add a `workflow` block to your workflow file
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -102,6 +105,7 @@ steps:
 - title: Add a `action` block to your workflow file
   description: Add a `action` block to your workflow file
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -122,6 +126,7 @@ steps:
 - title: Trigger the workflow
   description: Trigger the workflow
   event: check_suite.completed
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: gate
     left: '%payload.check_suite.app.name%'
@@ -148,6 +153,7 @@ steps:
 - title: Incorporate the workflow
   description: Incorporate the workflow
   event: pull_request.closed
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: gate
     every: true
