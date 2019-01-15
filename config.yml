@@ -79,9 +79,28 @@ steps:
   - type: respond
     with: entrypoint-success.md
 
-# 3 - Create your workflow
-- title: Create your workflow
-  description: Create your workflow
+# 3 - Add a `workflow` block to your workflow file
+- title: Add a `workflow` block to your workflow file
+  description: Add a `workflow` block to your workflow file
+  event: pull_request.synchronize
+  actions:
+  - type: getTree
+    action_id: tree
+    recursive: true
+    sha: '%payload.pull_request.head.sha%'
+  - type: gate
+    left: '%actions.tree.data.tree%'
+    operator: includes
+    right: path:/^.github/main.workflow$/
+    else:
+      type: respond
+      with: e-no-workflow.md
+  - type: respond
+    with: workflow-block-success.md
+
+# 4 - Add an action block to your workflow file
+- title: Add a `action` block to your workflow file
+  description: Add a `action` block to your workflow file
   event: pull_request.synchronize
   actions:
   - type: getTree
@@ -98,7 +117,8 @@ steps:
   - type: respond
     with: trigger.md
 
-# 4 - Trigger the workflow
+
+# 5 - Trigger the workflow
 - title: Trigger the workflow
   description: Trigger the workflow
   event: check_run
@@ -130,7 +150,7 @@ steps:
     data:
       url: '%payload.check_run.html_url%'
 
-# 5 - Incorporate the action
+# 6 - Incorporate the action
 - title: Incorporate the workflow
   description: Incorporate the workflow
   event: pull_request.closed
