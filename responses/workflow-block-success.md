@@ -29,7 +29,7 @@ Activity: Add an `action` block to your workflow file
 
 The `main.workflow` file cannot edited using an integration. Try editing the file using the web interface, or your command line.
 
-It is possible that you are using an integration (like GitHub Desktop or any other tool that authenticates as you and pushed on your behalf) if you receive a message like the one below:
+It is possible that you are using an integration (like GitHub Desktop or any other tool that authenticates as you and pushes on your behalf) if you receive a message like the one below:
 
 ```shell
 To https://github.com/your-username/your-repo.git
@@ -37,5 +37,5 @@ To https://github.com/your-username/your-repo.git
 error: failed to push some refs to 'https://github.com/your-username/your-repo.git'
 ```
 </details>
-
+<br />
 I'll respond after you push.
