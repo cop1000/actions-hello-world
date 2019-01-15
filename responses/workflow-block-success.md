@@ -25,4 +25,17 @@ Activity: Add an `action` block to your workflow file
 1. Stage and commit your workflow.
 1. Push it up to GitHub. 
 
+<details><summary>Trouble pushing?</summary>
+
+The `main.workflow` file cannot edited using an integration. Try editing the file using the web interface, or your command line.
+
+It is possible that you are using an integration (like GitHub Desktop or any other tool that authenticates as you and pushed on your behalf) if you receive a message like the one below:
+
+```shell
+To https://github.com/your-username/your-repo.git
+ ! [remote rejected] your-branch -> your-branch (refusing to allow an integration to update main.workflow)
+error: failed to push some refs to 'https://github.com/your-username/your-repo.git'
+```
+</details>
+
 I'll respond after you push.
