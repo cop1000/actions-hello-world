@@ -25,6 +25,7 @@ steps:
 - title: Add a Dockerfile
   description: Add a Dockerfile
   event: pull_request
+  link: '{{ repoUrl }}/issues/1'
   actions:
   - type: gate
     gates:
@@ -54,6 +55,7 @@ steps:
 - title: Add an entrypoint script
   description: Add an entrypoint script
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -83,6 +85,7 @@ steps:
 - title: Add a `workflow` block to your workflow file
   description: Add a `workflow` block to your workflow file
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -102,6 +105,7 @@ steps:
 - title: Add a `action` block to your workflow file
   description: Add a `action` block to your workflow file
   event: pull_request.synchronize
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: getTree
     action_id: tree
@@ -121,39 +125,35 @@ steps:
 # 5 - Trigger the workflow
 - title: Trigger the workflow
   description: Trigger the workflow
-  event: check_run
+  event: check_suite.completed
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: gate
-    every: true
-    gates:
-    - left: '%payload.check_run.app.name%'
-      operator: ===
-      right: GitHub Actions
-    - left: '%payload.check_run.status%'
-      operator: ===
-      right: completed
+    left: '%payload.check_suite.app.name%'
+    operator: ===
+    right: GitHub Actions
   - type: gate
-    left: '%payload.check_run.conclusion%'
+    left: '%payload.check_suite.conclusion%'
     operator: ===
     right: success
     else:
     - type: respond
-      issue: '%payload.check_run.pull_requests.0.number%'
+      issue: '%payload.check_suite.pull_requests.0.number%'
       with: e-no-run.md
       data:
-        url: '%payload.check_run.html_url%'
         repo: '%payload.repository.html_url%'
   - type: createReview
-    pullRequest: '%payload.check_run.pull_requests.0.number%'
+    pullRequest: '%payload.check_suite.pull_requests.0.number%'
     body: workflow-success.md
     event: APPROVE
     data:
-      url: '%payload.check_run.html_url%'
+      repo: '%payload.repository.html_url%'
 
 # 6 - Incorporate the action
 - title: Incorporate the workflow
   description: Incorporate the workflow
   event: pull_request.closed
+  link: '{{ repoUrl }}/pull/2'
   actions:
   - type: gate
     every: true

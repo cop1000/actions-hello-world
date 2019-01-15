@@ -1,20 +1,10 @@
 Welcome! This course is a companion to the Developer Guide [Creating a new workflow](https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/). We'll provide some context in issues and pull requests, but head on over to the docs for the full instructions.
 
-This example manually creates a workflow and an action, rather than using the visual editor. The workflow in this example uses the action created in the "[Hello world action example](https://developer.github.com/actions/creating-github-actions/creating-a-new-action/#hello-world-action-example)" to write values to standard output (`stdout`).
+There are two components to using GitHub Actions that we'll cover:
+- the action itself
+- a workflow that utilizes the action
 
-The action writes any values passed in the `args` [action attribute](https://developer.github.com/actions/creating-workflows/workflow-configuration-options#actions-attributes) to `stdout`.
-
-Here's an overview of the file hierarchy you'll use:
-
-```
-|-- hello-world-actions (repository)
-|   |__ .github
-|       |__ main.workflow
-|   |__ action-a
-|       │__  Dockerfile
-|       |__  entrypoint.sh  
-|
-```
+Every GitHub Action runs in a Docker container and requires a Dockerfile. Let's add it now. 
 
 Activity: Create a Dockerfile
 
