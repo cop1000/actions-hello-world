@@ -18,6 +18,9 @@ before:
   body: welcome.md
 
 # Repo artifacts:
+# Issue 1: Welcome
+# PR 2: (created by learner) houses the addition of the Dockerfile, entrypoint script, and workflow
+# Issue 3: Congratulations
 
 steps:
 
