@@ -6,7 +6,7 @@ You added the action block! Let's go over it.
 
 ### Your action is about to be triggered!
 
-Your repository now contains everything it needs to be defined (in the `./action-a/` folder) and everything it needs to be triggered (in the `./github/main.workflow` file).
+Your repository now contains everything it needs for the action to be defined (in the `./action-a/` folder) and everything it needs to be triggered (in the `./github/main.workflow` file).
 
 The action will run anytime you push code to your repository. Since you just pushed, the action will be triggered. Let's wait for the workflow to be triggered. This might take a few minutes since it's the first time it runs on this repo. 
 
