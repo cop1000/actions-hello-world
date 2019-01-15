@@ -5,7 +5,9 @@ You added a workflow block to your workflow file! Let's cover what just happened
 
 ### The action block
 
-We've referenced the Hello World action, but it is not defined in the workflow file. Let's add it.
+We've referenced the Hello World action, but it is not defined in the workflow file. This is also why you're seeing an error regarding the workflow
+
+Let's add the expected action to the workflow
 
 Activity: Add an `action` block to your workflow file
 

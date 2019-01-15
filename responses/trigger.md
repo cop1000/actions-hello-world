@@ -1,8 +1,8 @@
 You added the action block! Let's go over it.
 
 - `uses = "./action-a"`: the action block uses `action-a` by referencing the path to the action's directory, relative to your `hello-world-actions` repository.
-- `env = { ... }`: uses the `env` action attribute to create an environment variable that will be available to your action in the runtime environment. 
--  `MY_NAME = "Mona"`: finally, you'll pass a string to the action in the `args` attribute. The `args` you pass are appended to the `echo` command in `entrypoint.sh` and run in a command shell. This allows you to use environment variables in the `args` attribute. See "[`ENTRYPOINT`](https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#entrypoint)" for more about how the `entrypoint.sh` file works.
+- `env = { ... }`: uses the `env` action attribute to create an environment variable that will be available to your action in the runtime environment. In this case, the environment variable is `MY_NAME`, and it is currently initialized to `"Mona"`.
+-  `args = "\"Hello world, I'm $MY_NAME!\""`: finally, you'll pass a string to the action in the `args` attribute. The `args` you pass are appended to the `echo` command in `entrypoint.sh` and run in a command shell. This allows you to use environment variables in the `args` attribute. See "[`ENTRYPOINT`](https://developer.github.com/actions/creating-github-actions/creating-a-docker-container/#entrypoint)" for more about how the `entrypoint.sh` file works.
 
 ### Your action is about to be triggered!
 
