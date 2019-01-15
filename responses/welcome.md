@@ -4,7 +4,7 @@ There are two components to using GitHub Actions that we'll cover:
 - the action itself
 - a workflow that utilizes the action
 
-Every GitHub Action runs on a Docker container and requires a Dockerfile. Let's add it now. 
+Every GitHub Action runs in a Docker container and requires a Dockerfile. Let's add it now. 
 
 Activity: Create a Dockerfile
 
