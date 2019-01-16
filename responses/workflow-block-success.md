@@ -1,4 +1,4 @@
-You added a workflow block to your workflow file! Let's cover what just happened. 
+Nice work! :tada: You added a workflow block to your workflow file! Let's cover what just happened. 
 
 - `on = "push"` indicates that your workflow block will execute anytime code is pushed to your repository, using the [`push`](https://developer.github.com/v3/activity/events/types/#pushevent) event. 
 - `resolves = ["Hello World"]` selects the action to execute using the `resolves` attribute.
@@ -7,11 +7,13 @@ You added a workflow block to your workflow file! Let's cover what just happened
 
 We've referenced the Hello World action, but it is not defined in the workflow file. This is also why you're seeing an error regarding the workflow.
 
+## Step 4: Add a `action` block to your workflow file
+
 Let's add the expected action to the workflow.
 
-Activity: Add an `action` block to your workflow file
+### :keyboard: Activity: Add an `action` block to your workflow file and commit it to your branch
 
-1. In your existing branch, edit `.github/main.workflow`
+1. In your existing branch, edit `.github/main.workflow`.
 1. Append the following content to the file:
     ```hcl
     action "Hello World" {
@@ -38,4 +40,6 @@ error: failed to push some refs to 'https://github.com/your-username/your-repo.g
 ```
 </details>
 <br />
-I'll respond after you push.
+
+<hr>
+<h3 align="center">I'll respond below with your next step.</h3>
