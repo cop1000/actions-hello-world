@@ -1,6 +1,10 @@
+## Nice work!
+
+![celebrate](https://octodex.github.com/images/jetpacktocat.png)
+
 You merged and this course is now complete! I'll stop responding but the fun doesn't have to stop here. 
 
-### Want to keep learning? 
+## Want to keep learning? 
 
 In this repository:
 - Your merge should trigger your action again, check it out in the [Actions tab]({{ repo }}/actions).
@@ -14,3 +18,5 @@ Outside of this repository:
 - Use existing actions from the [GitHub Marketplace](https://github.com/marketplace/actions).
 - Use existing actions from GitHub's [official list](https://github.com/actions).
 - Use actions created by others in [awesome-actions](https://github.com/sdras/awesome-actions).
+
+Now...[what will you learn next]({{ host }}/courses)?
