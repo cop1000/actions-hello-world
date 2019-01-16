@@ -1,8 +1,6 @@
-Your script is present, but it's not executable.
+Almost there! Your script is present, but it's not executable.
 
-Activity: Make your script executable
-
-Assuming you've only worked on the web UI, and not locally until now:
+Assuming you've only worked on the web UI, and not locally until now, follow the below instructions:
 1. Fire up your favorite shell.
 1. Clone the repository:
     ```shell
@@ -26,5 +24,5 @@ Assuming you've only worked on the web UI, and not locally until now:
     ```shell
     git push
     ```
-
-I'll respond when you push to this branch.
+<hr>
+<h3 align="center">I'll respond below when you push to this branch.</h3>
