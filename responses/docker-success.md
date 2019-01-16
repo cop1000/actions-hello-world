@@ -3,7 +3,7 @@ Hey! You submitted a Dockerfile! :tada: You'll notice at the end of the Dockerfi
 ```Dockerfile
 ENTRYPOINT ["/entrypoint.sh"]
 ```
-## Step 3: Add an entrypoint script
+## Step 2: Add an entrypoint script
 
 An entrypoint script must exist in our repository. Let's add it. 
 
