@@ -1,4 +1,4 @@
-You added the action block! Let's go over it.
+Nice! :sparkles:You added the action block! Let's go over it.
 
 - `uses = "./action-a"`: the action block uses `action-a` by referencing the path to the action's directory, relative to your `hello-world-actions` repository.
 - `env = { ... }`: uses the `env` action attribute to create an environment variable that will be available to your action in the runtime environment. In this case, the environment variable is `MY_NAME`, and it is currently initialized to `"Mona"`.
@@ -16,4 +16,7 @@ You can see the action status reported below, or you can click the "Actions" tab
 
 ![View an action's log](https://developer.github.com/assets/images/actions-view-log.png)
 
-I will respond when I detect your action has run and reported a status. 
+<hr>
+<h3 align="center">I'll respond below when I detect your action has run and reported a status.</h3>
+
+> _Sometimes I respond too fast for the page to update! If you perform an expected action and don't see a response, wait a few seconds and refresh the page for your next steps._
