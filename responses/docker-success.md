@@ -1,12 +1,13 @@
-Hey! You submitted a Dockerfile! You'll notice at the end of the Dockerfile, we refer to an entrypoint script: 
+Hey! You submitted a Dockerfile! :tada: You'll notice at the end of the Dockerfile, we refer to an entrypoint script: 
 
 ```Dockerfile
 ENTRYPOINT ["/entrypoint.sh"]
 ```
+## Step 3: Add an entrypoint script
 
-That script must exist in our repository. Let's add it. 
+An entrypoint script must exist in our repository. Let's add it. 
 
-Activity: Add an entrypoint script
+### :keyboard: Activity: Add an entrypoint script and commit it to your pull request
 
 1. In your existing branch and folder (`./action-a/`), create a file titled `entrypoint.sh`.
 1. Add the following content to your script:
@@ -22,4 +23,5 @@ Activity: Add an entrypoint script
 1. Stage and commit your script.
 1. Push it up to GitHub. 
 
-I'll respond in this PR when I detect the push. 
+<hr>
+<h3 align="center">I'll respond below with your next step.</h3>
