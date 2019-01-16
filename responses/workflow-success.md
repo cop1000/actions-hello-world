@@ -6,7 +6,7 @@ You should see the string "Hello world, I'm Mona!" printed at the bottom to `std
 
 Anyone that uses this repository, and any future code can benefit from this workflow and your new action!
 
-## Step 1: Merge your workflow
+## Step 6: Merge your workflow
 
 ### :keyboard: Activity: Merge your workflow into the `master` branch
 
