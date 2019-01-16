@@ -1,4 +1,6 @@
-Welcome! This course is a companion to the Developer Guide [Creating a new workflow](https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/). We'll provide some context in issues and pull requests, but head on over to the docs for the full instructions.
+# Welcome 
+
+This course is a companion to the Developer Guide [Creating a new workflow](https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/). We'll provide some context in issues and pull requests, but head on over to the docs for the full instructions.
 
 There are two components to using GitHub Actions that we'll cover:
 - the action itself
