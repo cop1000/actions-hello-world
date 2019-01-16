@@ -16,6 +16,12 @@ You can see the action status reported below, or you can click the "Actions" tab
 
 ![View an action's log](https://developer.github.com/assets/images/actions-view-log.png)
 
+## Step 5: Trigger the workflow
+
+### :keyboard: Activity: See your action trigger the workflow
+
+1. You've done the work, not sit back and see your action trigger the workflow!
+
 <hr>
 <h3 align="center">I'll respond below when I detect your action has run and reported a status.</h3>
 
