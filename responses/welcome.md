@@ -1,17 +1,24 @@
-Welcome! This course is a companion to the Developer Guide [Creating a new workflow](https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/). We'll provide some context in issues and pull requests, but head on over to the docs for the full instructions.
+Welcome! This is a companion course to the Developer Guide: [Creating a new workflow](https://developer.github.com/actions/creating-workflows/creating-a-new-workflow/). For the most complete information, see the[documentation](https://developer.github.com/actions/).
 
+
+### Actions and Workflows
 There are two components to using GitHub Actions that we'll cover:
-- the action itself
-- a workflow that utilizes the action
+- the **action** itself
+- a **workflow** that uses the action
 
-Every GitHub Action runs in a Docker container and requires a Dockerfile. Let's add it now. 
+A workflow can contain many actions, but each action has its own purpose. So, we'll put the files relating to the action in their own directory.
 
-Activity: Create a Dockerfile
+## Step 1: Creating a `Dockerfile`
 
-1. Create a branch.
-1. In your new branch, create a directory: `action-a`
-1. In your new directory, create a file titled `Dockerfile`.
-1. Fill the Dockerfile with the content below:
+Every GitHub Action runs in a Docker container and requires a `Dockerfile`. Let's add it now. We won't discuss what each line means in detail, but the important thing to know is that the action will be executed in an environment defined by this file.
+
+### :keyboard: Activity: Create a `Dockerfile`
+
+1. Create a new branch
+  - _Branches should be named intentionally, so a good name for this branch could be `first-action`_
+1. On the new branch, create a directory: `action-a`
+1. In the `action-a` directory, create a file titled `Dockerfile`
+1. Fill the `Dockerfile` with the content below:
     ```Dockerfile
     FROM debian:9.5-slim
 
@@ -27,8 +34,9 @@ Activity: Create a Dockerfile
     ADD entrypoint.sh /entrypoint.sh
     ENTRYPOINT ["/entrypoint.sh"]
     ```
-1. Stage and commit your file.
-1. Push the file up to GitHub.
-1. Open a pull request with your new branch against `master`.
+1. Stage and commit your file
+1. Open a pull request with your new branch against `master`
+- If you're working locally, you will first need to push the branch to GitHub
 
-I'll respond in your new pull request when you open it.
+<hr>
+<h3 align="center">I'll respond in your new pull request.</h3>
