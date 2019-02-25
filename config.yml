@@ -94,7 +94,7 @@ steps:
   - type: respond
     with: 02.0_entrypoint-success.md
     data:
-      url: '%payload.repository.html_url%/new/%payload.pull_request.head.ref%?flow=1&filename=.github/main.workflow&pr=/%payload.repository.full_name%/pull/%payload.number%'
+      url: '%payload.repository.html_url%/new/%payload.pull_request.head.ref%?flow=1&filename=.github/main.workflow'
 
 # 3 - Add a `workflow` block to your workflow file
 - title: Add a `workflow` block to your workflow file
