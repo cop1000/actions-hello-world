@@ -8,6 +8,16 @@ tags:
 template:
     name: hello-world-actions
     repo: hello-world-actions-template
+preferences:
+  - type: radio
+    name: visualEditor
+    label: Visual Editor for GitHub Actions
+    description: Workflows for GitHub Actions can be edited as code, or using the visual editor for drag-and-drop actions.
+    options:
+      - label: Edit workflows as code
+        value: code
+      - label: Use the visual editor to edit workflow
+        value: visual
 before:
 # protect the master branch
 - type: updateBranchProtection
@@ -83,6 +93,8 @@ steps:
         branch: '%payload.pull_request.head.ref%'
   - type: respond
     with: 02.0_entrypoint-success.md
+    data:
+      url: '%payload.repository.html_url%/new/%payload.pull_request.head.ref%?flow=1&filename=.github/main.workflow&pr=/%payload.repository.full_name%/pull/%payload.number%'
 
 # 3 - Add a `workflow` block to your workflow file
 - title: Add a `workflow` block to your workflow file
