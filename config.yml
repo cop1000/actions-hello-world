@@ -115,6 +115,8 @@ steps:
       with: 03.1_e-no-workflow.md
   - type: respond
     with: 03.0_workflow-block-success.md
+    data:
+      url: '%payload.repository.html_url%/edit/%payload.pull_request.head.ref%/.github/main.workflow?pr=/%payload.repository.full_name%/pull/%payload.number%'
 
 # 4 - Add an action block to your workflow file
 - title: Add a `action` block to your workflow file
