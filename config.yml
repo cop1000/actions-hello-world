@@ -1,6 +1,6 @@
 title: A hello world workflow
-tagline: A hello world workflow
-description: A hello world workflow
+tagline: Create and use your first GitHub Action.
+description: Create a GitHub Action and use it in a workflow.
 tags:
   - GitHub Actions
   - Workflows
