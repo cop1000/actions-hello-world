@@ -26,6 +26,8 @@ before:
 - type: createIssue
   title: Welcome
   body: 00.0_welcome.md
+  comments:
+    - 00.1_first-steps.md
 
 # Repo artifacts:
 # Issue 1: Welcome
